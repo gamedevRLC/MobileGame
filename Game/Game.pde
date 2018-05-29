@@ -38,9 +38,6 @@ void setup(){
   //establishes the player---------------------------------------------
   p1 = new Player(width * .45, height * .75, width * .1);
   
-  //Starts the time for the tutorial levels
-  tutorial_starttime = millis();
-  
   //Starts the game at the title screen------------------------------
   state = "Title Screen";
 }
@@ -56,14 +53,17 @@ void draw(){
 }
 
 void mousePressed(){
-  //Goes from the title screen to screen 1----------------------------------
+  //Goes from the title screen to screen 1-----------------------------------------
   if(state == "Title Screen"){
+    //Starts the time for the tutorial levels-------------------------------------
+    tutorial_starttime = millis();
+    
     state = "Tutorial";
   }
 }
 
 void onFlick(float x, float y, float px, float py, float v){
-  //If not on the title screen, always move the player on screen flicking-------- 
+  //If not on the title screen, always move the player on screen flicking------------
   if(state != "Title Screen"){
     p1.onFlick(x, y, px, py, v);
   }
