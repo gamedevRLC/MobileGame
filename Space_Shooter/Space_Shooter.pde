@@ -22,13 +22,11 @@ KetaiGesture gesture;
 KetaiSensor sensor;
 Game SpaceShooter;
 
-//ArrayList<Bullet> bullets;
 void setup(){
   fullScreen();
   orientation(LANDSCAPE);
   dw = 1280.0/float(width);
   dh = 720.0/float(height);
-  //bullets = new ArrayList<Bullet>();
   SpaceShooter = new Game("Space Shooter");
   gesture = new KetaiGesture(this);
   sensor = new KetaiSensor(this);
@@ -37,25 +35,10 @@ void setup(){
 
 void draw(){
   SpaceShooter.draw();
-  
-  //background(128);
-    
-  //if(bullets.size() > 0){
-  //  for(int i = bullets.size() - 1; i >= 0; i--){
-  //    Bullet b = bullets.get(i);
-      
-  //    if(b.isDead() == true){
-  //      bullets.remove(b);
-  //    }else{
-  //      b.draw();
-  //    }
-  //  }
-  //}
 }
 
 void mousePressed(){
   SpaceShooter.mousePressed(mouseX, mouseY);
-  //bullets.add(new Bullet(mouseX, mouseY, 50, 50));
 }
 
 void onTap(float x, float y){

@@ -46,7 +46,7 @@ class Game{
   }
   
   void onTap(float x, float y){
-    
+    currentLevel.onTap(x, y);
   }
   
   void onAccelerometerEvent(float x, float y, float z){

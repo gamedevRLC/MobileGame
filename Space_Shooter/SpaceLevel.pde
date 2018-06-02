@@ -1,6 +1,7 @@
 
 class SpaceLevel extends GameLevel{
   Ship p1;
+  ArrayList<Bullet> bullets = new ArrayList<Bullet>();
   
   SpaceLevel(int _levelNumber, int _successTarget, int _failureTarget){
     super(_levelNumber, _successTarget, _failureTarget);
@@ -9,6 +10,17 @@ class SpaceLevel extends GameLevel{
   void draw(){
     background(0);
     
+    if(bullets.size() > 0){
+      for(int i = bullets.size() - 1; i >= 0; i--){
+        Bullet b = bullets.get(i);
+        
+        if(b.isDead() == true){
+          bullets.remove(b);
+        }else{
+          b.draw();
+        }
+      }
+    }
     
     p1.draw();
     p1.movement();
@@ -23,7 +35,7 @@ class SpaceLevel extends GameLevel{
   }
   
   void onTap(float x, float y){
-    
+    bullets.add(new Bullet(p1.location.x - (15/dw), p1.location.y + (p1.size.y * .5), 50, 50));
   }
   
   void onAccelerometerEvent(float x, float y, float z){
