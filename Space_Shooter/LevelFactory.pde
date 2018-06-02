@@ -23,7 +23,7 @@ class LevelFactory{
     //tries to locate the config file for the level
     try{
       lines = loadStrings(basePath + levelNumber + ".cfg");
-      println("loaded " + lines.length + "lines of data");
+      println("loaded " + lines.length + " lines of data");
       configLines = sanitizeConfigFile(levelNumber);
     }
     
@@ -54,6 +54,12 @@ class LevelFactory{
       level = new FailedLevel(levelNumber, successTargetLevel, failureTargetLevel);
     }
     
+    if(levelType == 1){
+      println("Creating space level...");
+      level = new SpaceLevel(levelNumber, successTargetLevel, failureTargetLevel);
+      configureSpaceLevel(configLines, (SpaceLevel)level);
+    }
+    
     return level;
   }
   
@@ -76,5 +82,18 @@ class LevelFactory{
   private void configureSpaceLevel(ArrayList<String> config, SpaceLevel slevel){
     println("Processing entities from config file...");
     
+    for(int i = 3; i < config.size(); i++){
+      String[]line = split(config.get(i).trim(), ',');
+      if(line.length == 5){
+        int type = int(line[0]);
+        int ex = int(line[1]);
+        int ey = int(line[2]);
+        int ew = int(line[3]);
+        int eh = int(line[4]);
+        if(type == 1){
+          slevel.addShip(new Ship(ex,ey, ew, eh));
+        }
+      }
+    }
   }
 }
