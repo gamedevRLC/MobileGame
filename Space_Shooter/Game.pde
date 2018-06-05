@@ -31,15 +31,14 @@ class Game{
   
   void showMenu(){
     background(0);
-    textAlign(CENTER);
     fill(255);
-    textSize(50);
+    textSize(50/dw);
     text("Tap the screen to start the game", width * .5, height * .5);
   }
   
   void mousePressed(int mx, int my){
     if(currentLevel == null){
-      currentLevel = levelMaker.getLevel(1);
+      currentLevel = levelMaker.getLevel(0);
     }else{
       currentLevel.mousePressed();
     }

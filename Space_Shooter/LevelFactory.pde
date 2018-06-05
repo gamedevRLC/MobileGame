@@ -34,7 +34,7 @@ class LevelFactory{
     }
     
     
-    //Sanitizes config file
+    //Analyzes config file
     levelTitle = configLines.get(0);
     println("Found level title: " + levelTitle);
     
@@ -50,14 +50,25 @@ class LevelFactory{
     }
     
     if(levelType == 0){
-      println("Creating failed level...");
-      level = new FailedLevel(levelNumber, successTargetLevel, failureTargetLevel);
+      println("Creating tutorial level...");
+      level = new CalibrateLevel(levelNumber, successTargetLevel, failureTargetLevel);
     }
     
     if(levelType == 1){
       println("Creating space level...");
       level = new SpaceLevel(levelNumber, successTargetLevel, failureTargetLevel);
       configureSpaceLevel(configLines, (SpaceLevel)level);
+    }
+    
+    if(levelType == 2){
+      println("Creating failed level...");
+      level = new FailedLevel(levelNumber, successTargetLevel, failureTargetLevel);
+    }
+    
+    if(levelType == 3){
+      println("Creating tutorial Level...");
+      level = new TutorialLevel(levelNumber, successTargetLevel, failureTargetLevel);
+      configureTutorialLevel(configLines, (TutorialLevel)level);
     }
     
     return level;
@@ -92,6 +103,24 @@ class LevelFactory{
         int eh = int(line[4]);
         if(type == 1){
           slevel.addShip(new Ship(ex,ey, ew, eh));
+        }
+      }
+    }
+  }
+  
+  private void configureTutorialLevel(ArrayList<String> config, TutorialLevel tlevel){
+    println("Creating entities from the config file...");
+    
+    for(int i = 3; i < config.size(); i++){
+      String[]line = split(config.get(i).trim(), ',');
+      if(line.length == 5){
+        int type = int(line[0]);
+        int ex = int(line[1]);
+        int ey = int(line[2]);
+        int ew = int(line[3]);
+        int eh = int(line[4]);
+        if(type == 1){
+          tlevel.addShip(new Ship(ex, ey, ew, eh));
         }
       }
     }

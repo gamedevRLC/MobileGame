@@ -17,16 +17,20 @@ import android.view.MotionEvent;
 import ketai.ui.*;
 
 float dw, dh;
+PFont font;
 
 KetaiGesture gesture;
 KetaiSensor sensor;
 Game SpaceShooter;
 
 void setup(){
-  fullScreen();
+  size(displayWidth, displayHeight);
   orientation(LANDSCAPE);
   dw = 1280.0/float(width);
   dh = 720.0/float(height);
+  font = createFont("misc./ZeldaDXTTBRK.otf", 1);
+  textFont(font);
+  textAlign(CENTER);
   SpaceShooter = new Game("Space Shooter");
   gesture = new KetaiGesture(this);
   sensor = new KetaiSensor(this);

@@ -17,28 +17,23 @@ class Ship extends GameEntity{
   
   void movement(){
     if(up == true){
-      location.y = location.y - 10;
+      location.y = location.y - 10/dh;
     }
     
     if(down == true){
-      location.y = location.y + 10;
+      location.y = location.y + 10/dh;
     }
   }
   
   void onAccelerometerEvent(float x, float y, float z){
-    if(x > 1.5){
+    if(x > 6.5){
       up = false;
       down = true;
     }else{
-      if(x < -1.5){
+      if(x < 6.5){
         up = true;
         down = false;
       }      
-    }
-    
-    if(x < 1.5 && x > -1.5){
-      up = false;
-      down = false;
     }
   }
 }

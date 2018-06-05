@@ -35,7 +35,7 @@ class SpaceLevel extends GameLevel{
   }
   
   void onTap(float x, float y){
-    bullets.add(new Bullet(p1.location.x - (15/dw), p1.location.y + (p1.size.y * .5), 50, 50));
+    bullets.add(new Bullet(p1.location.x - 15, p1.location.y + (p1.size.y * .5), 50/dw, 50/dh));
   }
   
   void onAccelerometerEvent(float x, float y, float z){
