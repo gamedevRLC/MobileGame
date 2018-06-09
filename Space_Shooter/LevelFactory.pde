@@ -111,16 +111,28 @@ class LevelFactory{
   private void configureTutorialLevel(ArrayList<String> config, TutorialLevel tlevel){
     println("Creating entities from the config file...");
     
-    for(int i = 3; i < config.size(); i++){
-      String[]line = split(config.get(i).trim(), ',');
-      if(line.length == 5){
-        int type = int(line[0]);
-        int ex = int(line[1]);
-        int ey = int(line[2]);
-        int ew = int(line[3]);
-        int eh = int(line[4]);
-        if(type == 1){
-          tlevel.addShip(new Ship(ex, ey, ew, eh));
+    String[] line = split(config.get(3).trim(), ',');
+    if(line.length == 5){
+      int type = int(line[0]);
+      int ex = int(line[1]);
+      int ey = int(line[2]);
+      int ew = int(line[3]);
+      int eh = int(line[4]);
+      if(type == 1){
+        tlevel.addShip(new Ship(ex, ey, ew, eh));
+      }
+    }
+    
+    for(int i = 4; i <config.size(); i++){
+      String[]line2 = split(config.get(i).trim(),',');
+      if(line2.length == 5){
+        int type = int(line2[0]);
+        int ex = -1 * int(line2[1]);
+        int ey = int(line2[2]);
+        int ew = int(line2[3]);
+        int eh = int(line2[4]);
+        if(type == 2){
+          tlevel.addAsteroid(new Asteroid(ex, ey, ew, eh));
         }
       }
     }

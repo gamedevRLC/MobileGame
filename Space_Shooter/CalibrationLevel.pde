@@ -4,7 +4,7 @@ class CalibrateLevel extends GameLevel{
   boolean calibrated = false;
   int calibrated_time, calibrated_starttime, calibrated_tminus, calibrated_countdown;
   PImage check;
-  float accelerometerx;
+  float accelerometerx, accelerometerz;
   
   CalibrateLevel(int _levelNumber, int _successTarget, int _failureTarget){
     super(_levelNumber, _successTarget, _failureTarget);
@@ -29,7 +29,7 @@ class CalibrateLevel extends GameLevel{
       text("Slowly tilt the screen up", width * .5, height * .5);
     }
     
-    if(accelerometerx > 4 && accelerometerx < 8.5){
+    if(accelerometerx > 4 && accelerometerx < 8.5 && accelerometerz > 0){
       imageMode(CENTER);
       text("You are in the reconmended range", width * .5, height * .5);
       image(check, width * .5, height * .75, 300/dw, 300/dh);
@@ -44,6 +44,7 @@ class CalibrateLevel extends GameLevel{
   
   void onAccelerometerEvent(float x, float y, float z){
     accelerometerx = x;
+    accelerometerz = z;
   }
   
   boolean isDone(){

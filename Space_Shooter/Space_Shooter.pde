@@ -24,12 +24,11 @@ KetaiSensor sensor;
 Game SpaceShooter;
 
 void setup(){
-  size(displayWidth, displayHeight);
+  size(displayWidth, displayHeight, P2D);
   orientation(LANDSCAPE);
   dw = 1280.0/float(width);
   dh = 720.0/float(height);
   font = createFont("misc./ZeldaDXTTBRK.otf", 1);
-  textFont(font);
   textAlign(CENTER);
   SpaceShooter = new Game("Space Shooter");
   gesture = new KetaiGesture(this);
